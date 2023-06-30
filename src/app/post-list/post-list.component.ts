@@ -7,6 +7,8 @@ import { PostService } from '../services/post.service';
   styleUrls: ['./post-list.component.scss'],
 })
 export class PostListComponent implements OnInit {
+  title = 'all posts';
+
   posts: any;
 
   constructor(private service: PostService) {}

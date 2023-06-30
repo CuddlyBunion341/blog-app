@@ -11,6 +11,16 @@ export class PostService {
 
   constructor(private http: HttpClient) {}
 
+  private deserializePost(post: any) {
+    return new Post(
+      post.id,
+      post.title,
+      post.content,
+      new Date(post.created_at),
+      new Date(post.updated_at)
+    );
+  }
+
   getPosts() {
     return this.http
       .get(this.url)
@@ -18,22 +28,23 @@ export class PostService {
       .then((data) => {
         if (!data) return;
 
-        const postList = data as {
-          title: string;
-          content: string;
-          created_at: string;
-          updated_at: string;
-        }[];
+        const postList = data as Array<any>; // TODO: type this
 
-        return postList.map(
-          (post) =>
-            new Post(
-              post.title,
-              post.content,
-              new Date(post.created_at),
-              new Date(post.updated_at)
-            )
-        );
+        return postList.map((post) => this.deserializePost(post));
+      })
+      .catch(this.handleError);
+  }
+
+  getPost(id: string) {
+    return this.http
+      .get(`${this.url}/${id}`)
+      .toPromise()
+      .then((data) => {
+        if (!data) return;
+
+        const post = data as any; // TODO: type this
+
+        return this.deserializePost(post);
       })
       .catch(this.handleError);
   }
