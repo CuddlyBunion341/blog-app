@@ -6,6 +6,8 @@ import { PostListComponent } from './post-list/post-list.component';
 const routes: Routes = [
   { path: 'posts', component: PostListComponent },
   { path: 'posts/:id', component: PostDetailComponent },
+  { path: '', redirectTo: '/posts', pathMatch: 'full' },
+  { path: 'random', redirectTo: '/posts/random', pathMatch: 'full' },
 ];
 
 @NgModule({
