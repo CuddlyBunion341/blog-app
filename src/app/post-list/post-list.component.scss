@@ -1,0 +1,48 @@
+.post-list {
+  &__wrapper {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  &__post {
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    background-color: #303030; // color-gray-4
+
+    &:hover {
+      & > img {
+        filter: none;
+      }
+    }
+  }
+
+  &__meta {
+    padding: 0.5em 1em;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s ease-in-out;
+    filter: grayscale(1) hue-rotate(50deg);
+  }
+}
+
+// TODO: use a mixin for this
+.post__tags {
+  display: flex;
+}
+
+.post__tag {
+  background-color: #79addc;
+  line-height: 1;
+  color: white;
+  padding: 0.5em;
+  border-radius: 0.5rem;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  display: inline-block;
+}

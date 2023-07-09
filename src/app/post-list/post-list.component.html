@@ -1,8 +1,25 @@
-<p>post-list works!</p>
+<main>
+  <h1>All Posts</h1>
 
-<ul>
-  <li *ngFor="let post of posts">
-    {{ post.title }}
-    <a [routerLink]="['/posts', post.id]">View</a>
-  </li>
-</ul>
+  <ul class="post-list__wrapper">
+    <li *ngFor="let post of posts">
+      <a [routerLink]="['/posts', post.id]">
+        <div class="post-list__post">
+          <img
+            src="https://picsum.photos/seed/PlsSthNice/800/300"
+            alt="TODO: add caption"
+            class="post-list__image"
+          />
+          <div class="post-list__meta">
+            <h2>{{ post.title }}</h2>
+            <ul class="post__tags">
+              <li><span class="post__tag">tag1</span></li>
+              <li><span class="post__tag">tag2</span></li>
+              <li><span class="post__tag">tag3</span></li>
+            </ul>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+</main>
