@@ -11,7 +11,12 @@ export class PostService {
 
   constructor(private http: HttpClient) {}
 
-  private deserializePost(post: any) {
+  /**
+   * Deserializes a post object from the API
+   * @param post Post object from the API
+   * @returns {Post}
+   */
+  private deserializePost(post: any): Post {
     return new Post(
       post.id,
       post.title,
@@ -21,7 +26,11 @@ export class PostService {
     );
   }
 
-  getPosts() {
+  /**
+   * Get a list of posts
+   * @returns {Promise<Post[]>}
+   */
+  getPosts(): Promise<Post[]> {
     return this.http
       .get(this.url)
       .toPromise()
@@ -35,9 +44,32 @@ export class PostService {
       .catch(this.handleError);
   }
 
-  getPost(id: string) {
+  /**
+   * Get a post by id
+   * @param {string} id
+   * @returns {Promise<Post>}
+   */
+  getPost(id: string): Promise<Post> {
     return this.http
       .get(`${this.url}/${id}`)
+      .toPromise()
+      .then((data) => {
+        if (!data) return;
+
+        const post = data as any; // TODO: type this
+
+        return this.deserializePost(post);
+      })
+      .catch(this.handleError);
+  }
+
+  /**
+   * Gets a random post
+   * @returns {Promise<Post>}
+   */
+  getRandomPost(): Promise<Post> {
+    return this.http
+      .get(`${this.url}/random`)
       .toPromise()
       .then((data) => {
         if (!data) return;
