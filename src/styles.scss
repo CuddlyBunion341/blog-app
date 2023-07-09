@@ -1,1 +1,64 @@
 @import "~normalize.css/normalize.css";
+
+// declare color variables
+$color-primary: #30bced;
+$color-primary-dark: #1d809f;
+$color-secondary: #fc5130;
+$color-secondary-dark: #b33a25;
+$color-gray-dark: #303036;
+$color-black: #050401;
+
+$color-gray-1: #121212;
+$color-gray-2: #1c1c1c;
+$color-gray-3: #262626;
+$color-gray-4: #303030;
+
+body {
+  font-family: monospace;
+  background-color: $color-gray-1;
+  color: white;
+}
+
+body * {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+}
+
+body {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  background: linear-gradient;
+}
+
+main {
+  padding: 2rem;
+  min-height: 100vh;
+}

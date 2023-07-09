@@ -1,4 +1,27 @@
-<div *ngIf="post">
-  <h2>{{ post.title }}</h2>
-  <p>{{ post.content }}</p>
-</div>
+<main class="post__wrapper">
+  <article class="post__container">
+    <div *ngIf="post">
+      <div class="post__header">
+        <div class="post__meta">
+          <span class="post__author">CB341</span>
+          <span class="post__date">Couple minutes ago...</span>
+        </div>
+        <ul class="post__tags">
+          <li><span class="post__tag">tag1</span></li>
+          <li><span class="post__tag">tag2</span></li>
+          <li><span class="post__tag">tag3</span></li>
+        </ul>
+      </div>
+      <figure class="post__image">
+        <img src="https://picsum.photos/seed/PlsSthNice/800/300" alt="Kitten" />
+      </figure>
+      <h1>{{ post.title }}</h1>
+      <div class="post-content">
+        <p>{{ post.content }}</p>
+      </div>
+    </div>
+  </article>
+  <h2>Comments</h2>
+  <section></section>
+  <!-- <app-comment-list [comments]="comments"></app-comment-list> -->
+</main>
