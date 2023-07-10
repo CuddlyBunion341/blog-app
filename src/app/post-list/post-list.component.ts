@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
+import { Post } from '../shared/models/post.model';
 
 @Component({
   selector: 'app-post-list',
@@ -8,14 +9,17 @@ import { PostService } from '../services/post.service';
 })
 export class PostListComponent implements OnInit {
   title = 'all posts';
+  posts: Post[] = [];
 
-  posts: any;
-
-  constructor(private service: PostService) {}
+  constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.service.getPosts().then((posts) => {
+    this.postService.getPosts().then((posts) => {
       this.posts = posts;
     });
   }
+
+  // parseMarkdown(markdownContent: string): string {
+  //   return this.markdownService.compile(markdownContent);
+  // }
 }
