@@ -58,7 +58,28 @@ h2 {
   background: linear-gradient;
 }
 
+h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
 main {
   padding: 2rem;
   min-height: 100vh;
+  width: 70%;
+  margin: auto auto;
+}
+
+// generic styles
+.flex {
+  display: flex;
+}
+
+.col2 {
+  flex-direction: row;
+
+  & > * {
+    flex: 1;
+  }
 }

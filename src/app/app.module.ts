@@ -9,10 +9,16 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { HeaderComponent } from './header/header.component';
 import { PostRandomComponent } from './post-random/post-random.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
-  declarations: [AppComponent, PostListComponent, PostDetailComponent, HeaderComponent, PostRandomComponent, CommentListComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MarkdownModule.forRoot(),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

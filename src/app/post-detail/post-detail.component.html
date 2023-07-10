@@ -17,7 +17,7 @@
       </figure>
       <h1>{{ post.title }}</h1>
       <div class="post-content">
-        <p>{{ post.content }}</p>
+        <markdown class="variable-binding" [data]="post.content"></markdown>
       </div>
     </div>
   </article>
