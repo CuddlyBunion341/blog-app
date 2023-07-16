@@ -1,20 +1,19 @@
 import { Author } from './author.model';
-import { Comment } from './comment.model';
 import { Deserializable } from './deserializable.model';
+import { Post } from './post.model';
 
 /**
- * Post model
+ * Comment model
  */
-export class Post implements Deserializable {
+export class Comment implements Deserializable {
   id!: number;
-  title!: string;
-  content!: string;
+  body!: string;
   createdAt!: Date;
   updatedAt!: Date;
-  comments!: Comment[];
   author!: Author;
+  post!: Post;
 
-  constructor(data?: Partial<Post>) {
+  constructor(data?: Partial<Comment>) {
     Object.assign(this, data);
   }
 
@@ -22,11 +21,8 @@ export class Post implements Deserializable {
     Object.assign(this, input);
     this.createdAt = new Date(input.created_at);
     this.updatedAt = new Date(input.updated_at);
-    this.comments = input.comments.map((comment: any) =>
-      new Comment().deserialize(comment)
-    );
-    this.author = new Author().deserialize(input.author);
-
+    this.author = new Author({}).deserialize(input.author);
+    // this.post = new Post({ id: input.post.id }).deserialize(input.post); // TODO: fix recursion
     return this;
   }
 }

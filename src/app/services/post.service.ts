@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class PostService {
-  private url = 'http://localhost:3000/api/posts';
+  private url = 'http://localhost:3000/api/v1/posts';
 
   constructor(private http: HttpClient) {}
 
@@ -17,13 +17,7 @@ export class PostService {
    * @returns {Post}
    */
   private deserializePost(post: any): Post {
-    return new Post(
-      post.id,
-      post.title,
-      post.content,
-      new Date(post.created_at),
-      new Date(post.updated_at)
-    );
+    return new Post().deserialize(post);
   }
 
   /**

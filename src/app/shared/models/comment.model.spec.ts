@@ -1,12 +1,11 @@
-import { Post } from './post.model';
+import { Comment } from './comment.model';
 
-describe('PostModel', () => {
+describe('CommentModel', () => {
   it('should create an instance', () => {
     expect(
-      new Post({
+      new Comment({
         id: 1,
-        title: 'Hello World!',
-        content: 'Lorem Ipsum',
+        body: 'test',
         createdAt: new Date(),
         updatedAt: new Date(),
       })

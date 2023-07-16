@@ -1,12 +1,12 @@
-import { Post } from './post.model';
+import { Author } from './author.model';
 
-describe('PostModel', () => {
+describe('Author model', () => {
   it('should create an instance', () => {
     expect(
-      new Post({
+      new Author({
         id: 1,
-        title: 'Hello World!',
-        content: 'Lorem Ipsum',
+        username: 'test',
+        email: 'email@example.com',
         createdAt: new Date(),
         updatedAt: new Date(),
       })
