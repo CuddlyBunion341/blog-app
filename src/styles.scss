@@ -1,4 +1,5 @@
 @import "~normalize.css/normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,100&display=swap");
 
 // declare color variables
 $color-primary: #30bced;
@@ -14,7 +15,7 @@ $color-gray-3: #262626;
 $color-gray-4: #303030;
 
 body {
-  font-family: monospace;
+  font-family: "Roboto Mono", monospace;
   background-color: $color-gray-1;
   color: white;
 }
@@ -81,5 +82,23 @@ main {
 
   & > * {
     flex: 1;
+  }
+}
+
+markdown {
+  line-height: 1.8em;
+  h3 {
+    // background-color: rebeccapurple;
+    color: rebeccapurple;
+
+    &::after,
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 0.1em;
+      background-color: rebeccapurple;
+      margin: 0.2em 0;
+    }
   }
 }
