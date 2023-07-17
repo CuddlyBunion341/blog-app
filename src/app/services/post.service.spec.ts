@@ -1,15 +1,22 @@
+import { TestBed } from '@angular/core/testing';
 import { PostService } from './post.service';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('PostService', () => {
   let postService: PostService;
-  let httpClientSpy: jasmine.SpyObj<PostService>;
 
-  beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    postService = new PostService(httpClientSpy as any);
+  beforeEach(async () => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [postService],
+    });
   });
 
   it('should list posts', () => {
-    // TODO: implement this test
+    // TODO: implement tests
   });
 });

@@ -19,9 +19,12 @@
 
   <fieldset>
     <legend>Content</legend>
-    <div class="flex col2">
-      <textarea name="" id="" cols="30" rows="10"> </textarea>
-      <div>RENDERED</div>
-    </div>
+    <angular-markdown-editor
+      textareaId="editor1"
+      [rows]="12"
+      name="markdownText"
+      [(ngModel)]="post.content"
+    />
+    <markdown class="variable-binding" [data]="post.content"></markdown>
   </fieldset>
 </main>
