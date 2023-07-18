@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,100&display=swap");
 
 // declare color variables
+
 $color-primary: #30bced;
 $color-primary-dark: #1d809f;
 $color-secondary: #fc5130;
@@ -31,7 +32,7 @@ body * {
 }
 
 body {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.5;
 }
 
@@ -67,8 +68,8 @@ h3 {
 
 main {
   padding: 2rem;
-  min-height: 100vh;
-  width: 70%;
+  // min-height: 100vh;
+  // width: 70%;
   margin: auto auto;
 }
 
@@ -86,19 +87,29 @@ main {
 }
 
 markdown {
-  line-height: 1.8em;
-  h3 {
-    // background-color: rebeccapurple;
-    color: rebeccapurple;
+  line-height: 2em;
 
-    &::after,
+  & > * {
+    margin-bottom: 1em;
+  }
+
+  h1 {
     &::before {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 0.1em;
-      background-color: rebeccapurple;
-      margin: 0.2em 0;
+      content: "# ";
+    }
+  }
+
+  h2 {
+    &::before {
+      content: "## ";
+    }
+  }
+
+  h3 {
+    color: #00aba5;
+
+    &::before {
+      content: "### ";
     }
   }
 }
