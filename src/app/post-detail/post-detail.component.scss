@@ -1,42 +1,4 @@
 main {
-  height: 100vh;
-  border-radius: 0.5rem;
-  padding: 1em;
-  margin: auto auto;
-  max-width: 800px;
-}
-
-.post-content {
-  background-color: white;
-  color: black;
-  padding: 1em;
-  margin-bottom: 1em;
-}
-
-.post__image {
-  overflow: hidden;
-
-  image {
-    max-width: 100%;
-  }
-
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-  margin-bottom: 1em;
-}
-
-.post__tags {
-  display: flex;
-}
-
-.post__tag {
-  background-color: #303030;
-  color: white;
-  padding: 0.5em;
-  border-radius: 0.5rem;
-  margin-right: 0.5em;
-  margin-bottom: 0.5em;
-  display: inline-block;
+  max-width: 60em;
+  margin: auto;
 }

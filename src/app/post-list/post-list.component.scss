@@ -1,54 +1,19 @@
-.post-list {
-  &__wrapper {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
-
-  &__post {
-    border-radius: 5px;
-    overflow: hidden;
-    position: relative;
-    background-color: #303030; // color-gray-4
-    flex: 1;
-
-    &:hover {
-      & > img {
-        filter: none;
-      }
-    }
-  }
-
-  &__meta {
-    padding: 0.5em 1em;
-    & > h2 {
-      word-wrap: break-word;
-    }
-  }
-
-  &__image {
-    width: 100%;
-    height: 100%;
-    display: none;
-    object-fit: cover;
-    transition: filter 0.3s ease-in-out;
-    filter: grayscale(1) hue-rotate(50deg);
-  }
+main {
+  max-width: 50em;
+  margin: auto;
 }
 
-// TODO: use a mixin for this
-.post__tags {
-  display: flex;
+h2 {
+  margin: 0;
 }
 
-.post__tag {
-  background-color: #79addc;
-  line-height: 1;
-  color: white;
-  padding: 0.5em;
-  border-radius: 0.5rem;
-  margin-right: 0.5em;
-  margin-bottom: 0.5em;
-  display: inline-block;
+.terminal-card {
+  text-align: center;
+}
+
+.ascii {
+  font-weight: bold;
+  color: var(--primary-color);
+  border: none;
+  padding: 0;
 }

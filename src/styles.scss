@@ -1,115 +1,30 @@
-@import "~normalize.css/normalize.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,100&display=swap");
+@import "terminal.css";
 
-// declare color variables
-
-$color-primary: #30bced;
-$color-primary-dark: #1d809f;
-$color-secondary: #fc5130;
-$color-secondary-dark: #b33a25;
-$color-gray-dark: #303036;
-$color-black: #050401;
-
-$color-gray-1: #121212;
-$color-gray-2: #1c1c1c;
-$color-gray-3: #262626;
-$color-gray-4: #303030;
-
-body {
-  font-family: "Roboto Mono", monospace;
-  background-color: $color-gray-1;
-  color: white;
-}
-
-body * {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  margin: 0;
-  padding: 0;
-  color: inherit;
+// Terminal.css dark theme
+:root {
+  --global-font-size: 15px;
+  --global-line-height: 1.4em;
+  --global-space: 10px;
+  --font-stack: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  --mono-font-stack: Menlo, Monaco, Lucida Console, Liberation Mono,
+    DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  --background-color: #222225;
+  --page-width: 60em;
+  --font-color: #e8e9ed;
+  --invert-font-color: #222225;
+  --secondary-color: #a3abba;
+  --tertiary-color: #a3abba;
+  --primary-color: #62c4ff;
+  --error-color: #ff3c74;
+  --progress-bar-background: #3f3f44;
+  --progress-bar-fill: #62c4ff;
+  --code-bg-color: #3f3f44;
+  --input-style: solid;
+  --display-h1-decoration: none;
 }
 
 body {
-  font-size: 1.1rem;
-  line-height: 1.5;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-ul,
-ol {
-  list-style: none;
-}
-
-h1 {
-  font-size: 2em;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 0.5em;
-}
-
-h2 {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  background: linear-gradient;
-}
-
-h3 {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-main {
-  padding: 2rem;
-  // min-height: 100vh;
-  // width: 70%;
-  margin: auto auto;
-}
-
-// generic styles
-.flex {
-  display: flex;
-}
-
-.col2 {
-  flex-direction: row;
-
-  & > * {
-    flex: 1;
-  }
-}
-
-markdown {
-  line-height: 2em;
-
-  & > * {
-    margin-bottom: 1em;
-  }
-
-  h1 {
-    &::before {
-      content: "# ";
-    }
-  }
-
-  h2 {
-    &::before {
-      content: "## ";
-    }
-  }
-
-  h3 {
-    color: #00aba5;
-
-    &::before {
-      content: "### ";
-    }
-  }
+  padding: 0 1em;
 }
