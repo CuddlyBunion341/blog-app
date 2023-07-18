@@ -15,6 +15,7 @@ import { PostFormComponent } from './post-form/post-form.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostRandomComponent } from './post-random/post-random.component';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     PostFormComponent,
     PostListComponent,
     PostRandomComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
