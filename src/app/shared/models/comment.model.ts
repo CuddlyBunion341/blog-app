@@ -1,11 +1,11 @@
 import { Author } from './author.model';
-import { Deserializable } from './deserializable.model';
 import { Post } from './post.model';
+import { Serializable } from './serializable.model';
 
 /**
  * Comment model
  */
-export class Comment implements Deserializable {
+export class Comment implements Serializable {
   id!: number;
   body!: string;
   createdAt!: Date;
@@ -15,6 +15,19 @@ export class Comment implements Deserializable {
 
   constructor(data?: Partial<Comment>) {
     Object.assign(this, data);
+  }
+
+  serialize() {
+    let comment: any = Object.assign({}, this);
+
+    delete comment.createdAt;
+    delete comment.updatedAt;
+    delete comment.author;
+    delete comment.post;
+
+    comment.post_id = this.post.id;
+
+    return comment;
   }
 
   deserialize(input: any): this {

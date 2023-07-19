@@ -1,9 +1,9 @@
-import { Deserializable } from './deserializable.model';
+import { Serializable } from './serializable.model';
 
 /**
  * Author model
  */
-export class Author implements Deserializable {
+export class Author implements Serializable {
   id!: number;
   username!: string;
   email!: string;
@@ -12,6 +12,13 @@ export class Author implements Deserializable {
 
   constructor(data?: Partial<Author>) {
     Object.assign(this, data);
+  }
+
+  serialize() {
+    let author: any = Object.assign({}, this);
+    delete author.createdAt;
+    delete author.updatedAt;
+    return author;
   }
 
   deserialize(input: any): this {

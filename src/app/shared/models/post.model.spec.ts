@@ -6,7 +6,7 @@ describe('PostModel', () => {
       new Post({
         id: 1,
         title: 'Hello World!',
-        content: 'Lorem Ipsum',
+        body: 'Lorem Ipsum',
         createdAt: new Date(),
         updatedAt: new Date(),
       })
