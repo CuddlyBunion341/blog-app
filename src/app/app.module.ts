@@ -27,6 +27,8 @@ import { FooterComponent } from './footer/footer.component';
     PostListComponent,
     PostRandomComponent,
     FooterComponent,
+    CommentSectionComponent,
+    CommentFormComponent,
   ],
   imports: [
     BrowserModule,

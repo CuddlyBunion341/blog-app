@@ -1,0 +1,11 @@
+<ul>
+  <li *ngFor="let comment of comments">
+    <div class="comment">
+      <span class="comment__author">{{ comment.author.username }} - </span>
+      <span class="comment__date">{{
+        dateFormater.format(comment.createdAt)
+      }}</span>
+      <p class="comment__content">{{ comment.body }}</p>
+    </div>
+  </li>
+</ul>
