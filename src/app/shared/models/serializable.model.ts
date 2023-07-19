@@ -12,5 +12,5 @@ export interface Serializable {
    * Serialize data to API
    * @returns Serialized data
    */
-  serialize(): any;
+  serialize(): string;
 }
