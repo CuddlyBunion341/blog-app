@@ -1,0 +1,42 @@
+<pre class="ascii">
+ ____ ____ _____ _  _   _   ____  _
+ / ___| __ |___ /| || | / | | __ )| | ___   __ _
+| |   |  _ \ |_ \| || |_| | |  _ \| |/ _ \ / _` |
+| |___| |_) ___) |__   _| | | |_) | | (_) | (_| |
+ \____|____|____/   |_| |_| |____/|_|\___/ \__, |
+                                           |___/
+</pre>
+<h1>Welcome to MyBlog!</h1>
+<div class="greeting" *ngIf="username">
+  <p>Hello, {{ username }}!</p>
+  <p>
+    You are logged in. You can view all the posts
+    <a [routerLink]="['/posts']">here</a>. You can also leave a comment on any
+    post you want. To view your profile click
+    <a [routerLink]="['/profile']">here</a>. You can also logout in the profile
+    page. Enjoy!
+  </p>
+</div>
+<div class="greeting" *ngIf="!username">
+  <p>Hello, stranger!</p>
+  <p>
+    Currently you are on the <ins>Welcome</ins> page. Here you can find some
+    information about the blog and how to use it.
+  </p>
+  <p>
+    This is a blog where you can view my mainly tech related posts. You can also
+    comment on them if you want to. You can find the list of all the posts
+    <a [routerLink]="['/posts']">here</a>. To leave a comment you need to
+    <a [routerLink]="['/login']">login</a> first. If you don't have an account
+    you can <a [routerLink]="['/register']">register</a> one. Registration is
+    free and it only takes a few seconds. Enjoy!
+  </p>
+</div>
+
+<p>
+  <ins>Hint:</ins> the terminal below is purely for decoration purposes. It
+  doesn't do anything. Don't try to type anything in it. This functionality will
+  be added in a future version.
+</p>
+
+<span class="terminal-prompt">[{{ username }}@myblog ~]$</span>
