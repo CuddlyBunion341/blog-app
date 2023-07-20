@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from '../shared/models/post.model';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +39,7 @@ export class PostService {
 
   /**
    * Get a post by id
-   * @param {string} id
+   * @param {string} id Post id to get
    * @returns {Promise<Post>}
    */
   getPost(id: string): Promise<Post> {
@@ -75,8 +74,41 @@ export class PostService {
       .catch(this.handleError);
   }
 
+  /**
+   * Creates a post
+   * @param post Post to create
+   */
+  createPost(post: Post) {
+    return this.http
+      .post(this.url, post.serialize())
+      .toPromise()
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(this.handleError);
+  }
+
+  /**
+   * Updates a post
+   * @param post Post to update
+   * @returns
+   */
+  updatePost(post: Post) {
+    return this.http
+      .put(`${this.url}/${post.id}`, { post })
+      .toPromise()
+      .then((data) => console.log(data))
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+
+    // TODO: refactor this
+    if (error.error.error) {
+      return Promise.reject(error.error.error);
+    }
+
+    return Promise.reject(error.error || error);
   }
 }

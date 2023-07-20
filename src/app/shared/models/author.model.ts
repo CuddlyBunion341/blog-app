@@ -14,13 +14,13 @@ export class Author implements Serializable {
     Object.assign(this, data);
   }
 
-  serialize(): string {
+  serialize(): Object {
     let author: any = Object.assign({}, this);
 
     delete author.createdAt;
     delete author.updatedAt;
 
-    return JSON.stringify({ author });
+    return { author };
   }
 
   deserialize(input: any): this {
