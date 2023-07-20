@@ -1,0 +1,30 @@
+main {
+  max-width: 50em;
+  margin: 0 auto;
+}
+
+.col2 {
+  // display: flex;
+  // flex-direction: row;
+  gap: 2rem;
+
+  & > * {
+    flex: 1;
+  }
+}
+
+textarea {
+  height: 100%;
+}
+
+.md-header {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  button {
+    outline: none !important;
+    background-color: black !important;
+    color: white !important;
+  }
+}

@@ -45,7 +45,8 @@
               "node_modules/jquery/dist/jquery.js",
               "node_modules/bootstrap-markdown/js/bootstrap-markdown.js",
               "node_modules/prismjs/components/prism-javascript.min.js",
-              "node_modules/prismjs/components/prism-typescript.min.js"
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/clipboard/dist/clipboard.min.js"
             ]
           },
           "configurations": {

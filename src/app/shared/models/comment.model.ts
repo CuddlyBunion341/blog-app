@@ -17,7 +17,7 @@ export class Comment implements Serializable {
     Object.assign(this, data);
   }
 
-  serialize(): string {
+  serialize(): Object {
     let comment: any = Object.assign({}, this);
 
     delete comment.createdAt;
@@ -27,7 +27,7 @@ export class Comment implements Serializable {
 
     comment.post_id = this.post.id;
 
-    return JSON.stringify({ comment });
+    return { comment };
   }
 
   deserialize(input: any): this {

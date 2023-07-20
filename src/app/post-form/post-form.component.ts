@@ -3,6 +3,7 @@ import { Post } from '../shared/models/post.model';
 import { MarkdownService } from 'ngx-markdown';
 import { EditorInstance, EditorOption } from 'angular-markdown-editor';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-post-form',
@@ -11,13 +12,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class PostFormComponent implements OnInit {
   bsEditorInstance!: EditorInstance;
-  markdownText = '';
-  showEditor = true;
   templateForm!: FormGroup;
   editorOptions!: EditorOption;
 
   constructor(
     private fb: FormBuilder,
+    private postService: PostService,
     private markdownService: MarkdownService
   ) {}
 
@@ -26,10 +26,27 @@ export class PostFormComponent implements OnInit {
       autofocus: false,
       iconlibrary: 'fa',
       savable: false,
+      hideable: false,
+      language: 'en',
+      footer: false,
+      resize: 'none',
+      hiddenButtons: ['Preview', 'TogglePreview'],
       onShow: (e) => (this.bsEditorInstance = e),
       parser: (val) => this.parse(val), // TODO: type this
     };
-    this.buildForm(this.markdownText);
+    this.buildForm(this.post.body);
+  }
+
+  onSubmit() {
+    // TODO: validate form
+    this.postService
+      .createPost(this.post)
+      .then((res) => {
+        console.log({ res });
+      })
+      .catch((err) => {
+        console.log({ err });
+      });
   }
 
   buildForm(markdownText: string) {
@@ -39,16 +56,13 @@ export class PostFormComponent implements OnInit {
     });
   }
 
-  onChange(e: any) {
-    console.log(e.getContent());
-  }
-
   parse(inputValue: string) {
     const output = this.markdownService.parse(inputValue.trim());
     this.highlight();
 
     return output;
   }
+
   highlight() {
     setTimeout(() => {
       this.markdownService.highlight();
@@ -57,7 +71,7 @@ export class PostFormComponent implements OnInit {
 
   post = new Post({
     title: '',
-    content: `
+    body: `
 # Hello World!
 ## This is a sub-heading...
 ### And here's some other cool stuff:
@@ -93,7 +107,6 @@ class Person {
   }
 }
 \`\`\`
-
 `,
   });
 }
