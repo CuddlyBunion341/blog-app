@@ -1,0 +1,16 @@
+.container {
+  text-align: center;
+  h1 {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.ascii {
+  font-weight: bold;
+  color: var(--primary-color);
+  border: none;
+  margin: 0;
+  padding: 0;
+}

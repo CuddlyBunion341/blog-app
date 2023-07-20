@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
     CommentFormComponent,
     LoginFormComponent,
     SignupFormComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
