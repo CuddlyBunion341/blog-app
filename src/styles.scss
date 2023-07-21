@@ -26,7 +26,25 @@
 }
 
 body {
+  & > .container {
+    max-width: var(--page-width);
+  }
   padding: 0 1em;
+}
+
+// Terminal.css overrides
+.tag-list {
+  display: inline-flex;
+  li {
+    margin-right: 0.5em;
+    padding: 0;
+    &::after {
+      content: "";
+    }
+    &::before {
+      content: "#";
+    }
+  }
 }
 
 // Global markdown styling
@@ -47,8 +65,4 @@ markdown,
       background-color: rgba(0, 0, 0, 0) !important;
     }
   }
-}
-
-body > .container {
-  max-width: var(--page-width);
 }
