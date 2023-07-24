@@ -32,6 +32,10 @@ body {
   padding: 0 1em;
 }
 
+.flex {
+  display: flex;
+}
+
 // Terminal.css overrides
 .tag-list {
   display: inline-flex;
