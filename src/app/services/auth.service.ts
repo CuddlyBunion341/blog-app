@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Login as LoginModel } from '../shared/models/login.model';
-import { Author as User } from '../shared/models/author.model';
+import { User } from '../shared/models/user.model';
 import { Registration } from '../shared/models/registration.model';
 import { SessionService } from './session.service';
 import { SessionUser } from '../shared/models/session-user.model';
+import { AbstractService } from './abstract.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
-  private url = 'http://localhost:3000/api/v1/users';
-
+export class AuthService extends AbstractService {
   constructor(
-    private http: HttpClient,
-    private sessionService: SessionService
-  ) {}
+    private sessionService: SessionService,
+    private http: HttpClient
+  ) {
+    super();
+  }
 
   /**
    * Deserializes a user object from the API
@@ -23,8 +24,6 @@ export class AuthService {
    * @returns {User}
    */
   private deserializeUser(user: any): User {
-    console.log({ user });
-
     return new User().deserialize(user);
   }
 
@@ -35,13 +34,11 @@ export class AuthService {
   login(loginModel: LoginModel): Promise<User> {
     // TODO: type this
     return this.http
-      .post(`${this.url}/sign_in`, loginModel.serialize())
+      .post(`${this.baseUrl}/login`, loginModel.serialize())
       .toPromise()
       .then((res: any) => this.deserializeUser(res))
       .then((user: User) => {
         this.sessionService.setCurrentUser(new SessionUser(user));
-        console.log(this.sessionService.getCurrentUser());
-
         return user;
       })
       .catch(this.handleError);
@@ -53,7 +50,7 @@ export class AuthService {
    */
   currentUser(): Promise<User> {
     return this.http
-      .get(`${this.url}/current`)
+      .get(`${this.baseUrl}/user`)
       .toPromise()
       .then((res: any) => this.deserializeUser(res))
       .then((user: User) => {
@@ -70,7 +67,7 @@ export class AuthService {
   register(registration: Registration) {
     // TODO: type this
     return this.http
-      .post(this.url, registration.serialize())
+      .post(`${this.baseUrl}/signup`, registration.serialize())
       .toPromise()
       .catch(this.handleError);
   }
@@ -82,22 +79,11 @@ export class AuthService {
   logout() {
     // TODO: type this
     return this.http
-      .get(`${this.url}/sign_out`, {})
+      .delete(`${this.baseUrl}/logout`, {})
       .toPromise()
-      .then(() => {
+      .finally(() => {
+        // Clear the current user from the session even if the API call fails
         this.sessionService.clearCurrentUser();
       });
-  }
-
-  // TODO: refactor this to a shared service
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-
-    // TODO: refactor this
-    if (error.error.error) {
-      return Promise.reject(error.error.error);
-    }
-
-    return Promise.reject(error.error || error);
   }
 }

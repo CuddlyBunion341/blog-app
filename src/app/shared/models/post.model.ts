@@ -33,10 +33,11 @@ export class Post implements Serializable {
     Object.assign(this, input);
     this.createdAt = new Date(input.created_at);
     this.updatedAt = new Date(input.updated_at);
-    this.comments = input.comments.map((comment: any) =>
-      new Comment().deserialize(comment)
-    );
-    this.author = new Author().deserialize(input.author);
+    if (input.comments)
+      this.comments = input.comments.map((comment: any) =>
+        new Comment().deserialize(comment)
+      );
+    if (input.author) this.author = new Author().deserialize(input.author);
 
     return this;
   }

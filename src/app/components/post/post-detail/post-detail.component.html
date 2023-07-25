@@ -1,0 +1,38 @@
+<main class="post__wrapper">
+  <div class="article__wrapper">
+    <article class="post__container">
+      <div *ngIf="post">
+        <div class="post__header">
+          <div class="post__meta">
+            <h1>
+              {{ post.title }}
+              <a
+                *ngIf="sessionService.getCurrentUser()"
+                [routerLink]="['/edit', post.id]"
+                >Edit</a
+              >
+            </h1>
+            <span class="post__date"
+              >{{ dateFormater.format(post.createdAt) }} |
+            </span>
+            <ul class="post__tags tag-list">
+              <li class="nostyle"><a>tag1</a></li>
+              <li class="nostyle"><a>tag2</a></li>
+              <li class="nostyle"><a>tag3</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="post__body">
+          <markdown
+            class="variable-binding"
+            [data]="post.body"
+            clipboard
+          ></markdown>
+        </div>
+      </div>
+    </article>
+    <h2>Comments</h2>
+    <app-comment-form />
+    <app-comment-section />
+  </div>
+</main>

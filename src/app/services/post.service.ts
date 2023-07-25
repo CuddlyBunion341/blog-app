@@ -1,14 +1,17 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from '../shared/models/post.model';
+import { AbstractService } from './abstract.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PostService {
-  private url = 'http://localhost:3000/api/v1/posts';
+export class PostService extends AbstractService {
+  private url = `${this.baseUrl}/posts`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   /**
    * Deserializes a post object from the API
@@ -28,10 +31,8 @@ export class PostService {
       .get(this.url)
       .toPromise()
       .then((data) => {
-        if (!data) return;
-
+        if (!data) return null;
         const postList = data as Array<any>; // TODO: type this
-
         return postList.map((post) => this.deserializePost(post));
       })
       .catch(this.handleError);
@@ -47,10 +48,8 @@ export class PostService {
       .get(`${this.url}/${id}`)
       .toPromise()
       .then((data) => {
-        if (!data) return;
-
+        if (!data) return null;
         const post = data as any; // TODO: type this
-
         return this.deserializePost(post);
       })
       .catch(this.handleError);
@@ -65,10 +64,8 @@ export class PostService {
       .get(`${this.url}/random`)
       .toPromise()
       .then((data) => {
-        if (!data) return;
-
+        if (!data) return null;
         const post = data as any; // TODO: type this
-
         return this.deserializePost(post);
       })
       .catch(this.handleError);
@@ -82,9 +79,6 @@ export class PostService {
     return this.http
       .post(this.url, post.serialize())
       .toPromise()
-      .then((data) => {
-        console.log(data);
-      })
       .catch(this.handleError);
   }
 
@@ -97,18 +91,6 @@ export class PostService {
     return this.http
       .put(`${this.url}/${post.id}`, { post })
       .toPromise()
-      .then((data) => console.log(data))
       .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-
-    // TODO: refactor this
-    if (error.error.error) {
-      return Promise.reject(error.error.error);
-    }
-
-    return Promise.reject(error.error || error);
   }
 }

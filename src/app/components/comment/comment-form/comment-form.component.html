@@ -1,0 +1,9 @@
+<form (ngSubmit)="onSubmit()" class="flex">
+  <input
+    type="text"
+    name="body"
+    placeholder="comment..."
+    [(ngModel)]="comment.body"
+  />
+  <button class="btn btn-default" type="submit">Submit</button>
+</form>

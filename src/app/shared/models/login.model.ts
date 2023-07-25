@@ -12,7 +12,7 @@ export class Login implements Serializable {
   }
 
   serialize(): Object {
-    return { user: this };
+    return this;
   }
 
   deserialize(input: any): this {

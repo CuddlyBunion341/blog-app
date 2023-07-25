@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import {
-  AngularMarkdownEditorComponent,
-  AngularMarkdownEditorModule,
-} from 'angular-markdown-editor';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CommentListComponent } from './comment-list/comment-list.component';
-import { HeaderComponent } from './header/header.component';
-import { PostDetailComponent } from './post-detail/post-detail.component';
-import { PostFormComponent } from './post-form/post-form.component';
-import { PostListComponent } from './post-list/post-list.component';
-import { PostRandomComponent } from './post-random/post-random.component';
+import { CommentListComponent } from './components/comment/comment-list/comment-list.component';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { PostDetailComponent } from './components/post/post-detail/post-detail.component';
+import { PostFormComponent } from './components/post/post-form/post-form.component';
+import { PostListComponent } from './components/post/post-list/post-list.component';
+import { PostRandomComponent } from './components/post/post-random/post-random.component';
 import { FormsModule } from '@angular/forms';
-import { FooterComponent } from './footer/footer.component';
-import { CommentSectionComponent } from './comment-section/comment-section.component';
-import { CommentFormComponent } from './comment-form/comment-form.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
+import { CommentSectionComponent } from './components/comment/comment-section/comment-section.component';
+import { CommentFormComponent } from './components/comment/comment-form/comment-form.component';
+import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { SignupFormComponent } from './signup-form/signup-form.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginFormComponent } from './components/auth/login-form/login-form.component';
+import { SignupFormComponent } from './components/auth/signup-form/signup-form.component';
+import { WelcomeComponent } from './components/home/welcome/welcome.component';
+import { ProfileComponent } from './components/profile/profile/profile.component';
+import { NotFoundComponent } from './components/error/not-found/not-found.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { LogoutComponent } from './components/auth/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     LoginFormComponent,
     SignupFormComponent,
     WelcomeComponent,
+    ProfileComponent,
     NotFoundComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,9 +49,16 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     HttpClientModule,
     MarkdownModule.forRoot(),
+    LMarkdownEditorModule,
     AngularMarkdownEditorModule.forRoot({}),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

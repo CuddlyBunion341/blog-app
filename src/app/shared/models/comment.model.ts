@@ -34,7 +34,7 @@ export class Comment implements Serializable {
     Object.assign(this, input);
     this.createdAt = new Date(input.created_at);
     this.updatedAt = new Date(input.updated_at);
-    this.author = new Author({}).deserialize(input.author);
+    if (input.author) this.author = new Author({}).deserialize(input.author);
     // this.post = new Post({ id: input.post.id }).deserialize(input.post); // TODO: fix recursion
     return this;
   }

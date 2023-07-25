@@ -1,0 +1,8 @@
+<div class="user-profile">
+  <div class="stranger" *ngIf="!sessions.getCurrentUser()">
+    <h1>Hello Stranger</h1>
+  </div>
+  <div class="user" *ngIf="sessions.getCurrentUser()">
+    <h1>Hello {{ sessions.getCurrentUser()?.username }}</h1>
+  </div>
+</div>
