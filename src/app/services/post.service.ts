@@ -74,6 +74,7 @@ export class PostService extends AbstractService {
   /**
    * Creates a post
    * @param post Post to create
+   * @returns {Promise<Post>}
    */
   createPost(post: Post) {
     return this.http
@@ -85,11 +86,23 @@ export class PostService extends AbstractService {
   /**
    * Updates a post
    * @param post Post to update
-   * @returns
+   * @returns {Promise<Post>}
    */
   updatePost(post: Post) {
     return this.http
       .put(`${this.url}/${post.id}`, { post })
+      .toPromise()
+      .catch(this.handleError);
+  }
+
+  /**
+   * Deletes a post
+   * @param postId Post id to delete
+   * @returns {Promise<any>}
+   */
+  deletePost(postId: number) {
+    return this.http
+      .delete(`${this.url}/${postId}`)
       .toPromise()
       .catch(this.handleError);
   }

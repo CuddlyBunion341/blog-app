@@ -1,5 +1,7 @@
 <main>
-  <h1 *ngIf="isEditForm">Edit Post #{{ post.id }}</h1>
+  <h1 *ngIf="isEditForm">
+    Edit Post #{{ post.id }} <a [routerLink]="['/posts', post.id]">Show</a>
+  </h1>
   <h1 *ngIf="!isEditForm">Create Post</h1>
   <form (ngSubmit)="onSubmit()">
     <fieldset>
@@ -26,9 +28,19 @@
         [(ngModel)]="post.body"
       />
     </fieldset>
-    <button class="btn btn-primary btn-block" type="submit">
-      <span *ngIf="isEditForm">Update</span>
-      <span *ngIf="!isEditForm">Create</span>
-    </button>
+    <div class="flex btn-group">
+      <button class="btn btn-primary btn-block" type="submit">
+        <span *ngIf="isEditForm">Update</span>
+        <span *ngIf="!isEditForm">Create</span>
+      </button>
+      <button
+        class="btn btn-error btn-block"
+        type="button"
+        *ngIf="isEditForm"
+        (click)="onDelete()"
+      >
+        <span>Delete</span>
+      </button>
+    </div>
   </form>
 </main>

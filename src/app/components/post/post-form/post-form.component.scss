@@ -23,3 +23,13 @@ textarea {
     color: white !important;
   }
 }
+
+fieldset {
+  margin-bottom: 1em;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}

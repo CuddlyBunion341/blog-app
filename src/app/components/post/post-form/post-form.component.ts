@@ -4,7 +4,7 @@ import { MarkdownService } from 'ngx-markdown';
 import { EditorInstance, EditorOption } from 'angular-markdown-editor';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PostService } from '../../../services/post.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-form',
@@ -22,18 +22,28 @@ export class PostFormComponent implements OnInit {
     private fb: FormBuilder,
     private postService: PostService,
     private markdownService: MarkdownService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
 
     if (id) {
-      this.postService.getPost(id).then((post) => {
-        this.post = post;
-        this.isEditForm = true;
-        this.buildForm(this.post.body);
-      });
+      console.log(id);
+
+      this.postService
+        .getPost(id)
+        .then((post) => {
+          this.post = post;
+          this.isEditForm = true;
+          this.buildForm(this.post.body);
+        })
+        .catch((err) => {
+          console.error(err);
+          alert('Post not found!');
+          this.router.navigate(['/posts']);
+        });
     }
 
     this.editorOptions = {
@@ -61,6 +71,18 @@ export class PostFormComponent implements OnInit {
     } else {
       this.postService.createPost(this.post).then((res) => {
         alert('Post created successfully!');
+        this.router.navigate(['/edit', res.id]);
+      });
+    }
+  }
+
+  onDelete() {
+    if (!this.isEditForm) return;
+
+    if (confirm('Are you sure you want to delete this post?')) {
+      this.postService.deletePost(this.post.id).then((res) => {
+        alert('Post deleted successfully!');
+        this.router.navigate(['/posts']);
       });
     }
   }
