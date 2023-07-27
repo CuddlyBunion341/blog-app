@@ -41,8 +41,11 @@ export class DateService {
   }
 
   format(date: Date): string {
-    return `${this.monthName(date.getMonth())} ${date.getDay()}${this.dayPrefix(
-      date.getDay()
-    )} ${date.getFullYear()}`;
+    const month = this.monthName(date.getMonth());
+    const day = date.getDate();
+    const fullDay = `${day}${this.dayPrefix(day)}`;
+    const year = date.getFullYear();
+
+    return `${month} ${fullDay} ${year}`;
   }
 }

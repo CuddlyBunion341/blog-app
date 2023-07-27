@@ -19,7 +19,10 @@ export class PostListComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.getPosts().then((posts) => {
-      this.posts = posts;
+      // Sort posts by createdAt date descending
+      this.posts = posts.sort((a, b) => {
+        return a.createdAt > b.createdAt ? -1 : 1;
+      });
     });
   }
 }
