@@ -8,11 +8,11 @@ import { Comment } from '../../../shared/models/comment.model';
 })
 export class CommentFormComponent {
   comment: Comment = new Comment();
+
   onSubmit() {
     console.log(this.comment);
 
     // TODO: call service to save comment
   }
-
   constructor() {} // TODO: inject comment service
 }

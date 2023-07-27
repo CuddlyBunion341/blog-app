@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../../shared/models/post.model';
 import { PostService } from '../../../services/post.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DateService } from '../../../services/date.service';
 import { SessionService } from '../../../services/session.service';
 
@@ -17,14 +17,22 @@ export class PostDetailComponent implements OnInit {
     public dateFormater: DateService,
     public sessionService: SessionService,
     private service: PostService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
 
-    this.service.getPost(id).then((post) => {
-      this.post = post;
-    });
+    this.service
+      .getPost(id)
+      .then((post) => {
+        this.post = post;
+      })
+      .catch((err) => {
+        console.error(err);
+        alert('Post not found!');
+        this.router.navigate(['/posts']);
+      });
   }
 }

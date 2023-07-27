@@ -1,11 +1,11 @@
-<main class="post__wrapper">
+<main class="post__wrapper" *ngIf="post">
   <div class="article__wrapper">
     <article class="post__container">
       <div *ngIf="post">
         <div class="post__header">
           <div class="post__meta">
             <h1>
-              {{ post.title }}
+              [#{{ post.id }}] {{ post.title }}
               <a
                 *ngIf="sessionService.getCurrentUser()"
                 [routerLink]="['/edit', post.id]"
@@ -32,7 +32,6 @@
       </div>
     </article>
     <h2>Comments</h2>
-    <app-comment-form />
-    <app-comment-section />
+    <app-comment-section (postId)="(post.id)" />
   </div>
 </main>
